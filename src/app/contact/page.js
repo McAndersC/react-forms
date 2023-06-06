@@ -1,7 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
 import styles from "./page.module.css";
-import ContactForm from "@/components/contactForm";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -15,37 +14,56 @@ const validationSchema = Yup.object().shape({
     .required("ET TAL SKAL VÆRE DER"),
 });
 
-
-
 const Contact = () => {
-  const onSubmit = (data) => {
-    const { name, email, message, age, color, date } = data;
 
-    let contactObject = {
-      name: name,
-      email: email,
-      message: message,
-      age: age,
-      color: color,
-      date: date,
-    };
-    console.log("contactObject", contactObject);
-  };
+  /*
+  
+    UseForm Setup
+  
+  */
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       name: "Anders",
       email: "anders@medieskolerne.dk",
-      color: "#973B3B",
       message: "En forudfyldt besked",
-      age: 12,
+      age: 12
     },
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchema)
   });
+
+
+  /*
+  
+    Når vi Submitter vores Form.
+  
+  */
+  const onSubmit = (data) => {
+
+
+    console.log(data.name)
+
+
+    const { name, email, message, age } = data;
+
+    let contactObject = {
+      name,
+      email,
+      message,
+      age
+    };
+    console.log("contactObject", contactObject);
+
+    fetch('/api/contact', {
+      method: 'POST',
+      body : JSON.stringify(contactObject)
+    })
+
+  };
+
+
+
+
 
   return (
     <div>
@@ -60,7 +78,7 @@ const Contact = () => {
             {errors.name?.message && <p>{errors.name?.message}</p>}
           </label>
 
-          <label>
+          <label className={errors.email?.message ? 'error' : '' }>
             Email
             <input {...register("email")} />
             {errors.email?.message && <p>{errors.email?.message}</p>}
@@ -80,13 +98,6 @@ const Contact = () => {
             )}
           </label>
 
-          <label>
-            Date
-            <input {...register("date")} type="date" />
-            {errors.date?.message && (
-              <p style={{ color: "red" }}>{errors.date?.message}</p>
-            )}
-          </label>
         </fieldset>
 
         <button type="submit">Add Contact</button>

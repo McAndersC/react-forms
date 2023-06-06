@@ -105,3 +105,9 @@ a {
     color-scheme: dark;
   }
 }
+
+.error input{
+
+  border: 1px red solid;
+
+}
