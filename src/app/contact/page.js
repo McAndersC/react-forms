@@ -41,8 +41,7 @@ const Contact = () => {
   const onSubmit = (data) => {
 
 
-    console.log(data.name)
-
+    console.log('onSubmit', data.name, data)
 
     const { name, email, message, age } = data;
 
@@ -52,6 +51,7 @@ const Contact = () => {
       message,
       age
     };
+
     console.log("contactObject", contactObject);
 
     fetch('/api/contact', {

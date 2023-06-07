@@ -12,14 +12,8 @@ export async function GET() {
 
 export async function POST(request) {
 
-
     const body = await request.json();
 
+    return NextResponse.json({"success" : body});
 
-    console.log('request', body)
-
-
-    return NextResponse.json({"success" : true});
-
-    
 }
