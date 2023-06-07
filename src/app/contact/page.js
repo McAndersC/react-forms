@@ -1,5 +1,5 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useForm, useEffect } from "react-hook-form";
 import styles from "./page.module.css";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -61,10 +61,7 @@ const Contact = () => {
 
   };
 
-
-
-
-
+  
   return (
     <div>
       <h1>Contact Page</h1>
