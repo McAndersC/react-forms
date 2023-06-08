@@ -4,7 +4,7 @@ import dbConnect from '@/lib/dbConnect';
 
 export async function GET() {
 
-    
+    await dbConnect();
     return contactModel.find({}).then( (response) => {
 
         return NextResponse.json(response);
@@ -18,17 +18,14 @@ export async function POST(request) {
 
 
     const body = await request.json();
+    
     await dbConnect();
-
-    console.log(body)
-
-
     return contactModel.create(body).then( (response) => {
         
         return NextResponse.json({"success" : response});
 
     })
 
-   
+  
 
 }
