@@ -6,8 +6,8 @@ const ContactItem1 = ({contact}) => {
 
     return (
         <div>
-            <h1>{contact.name}</h1>
-            <div>{contact.age}</div>
+            <h2>{contact.name}</h2>
+            <div style={{color: 'red'}}>{contact.age}</div>
         </div>
     )
 
@@ -17,7 +17,7 @@ const ContactItem2 = ({contact}) => {
 
     return (
         <div>
-            <h5>{contact.name}</h5>
+            <h3>{contact.name}</h3>
             <div>{contact.age}</div>
         </div>
     )
@@ -39,11 +39,16 @@ const ContactList = ({view}) => {
     
     return (
         <div>
-            {contacts.map( (contact, index) => {
+            <h1>VIEW: {view}</h1>
+            {
 
-                return view === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
+                contacts.map( (contact, index) => {
 
-            })}
+                    return view === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
+
+                })
+            
+            }
         </div>
     )
 }
