@@ -1,38 +1,20 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import ContactList from "@/components/contactList"
 
-
-const Contacts = () => {
-
-    const [contacts, setContacts] = useState([])
-
-    useEffect( () => {
-
-        fetch('/api/contact').then(response => response.json()).then( (contacts) => {
-           
-            setContacts(contacts)
-        } )
-
-    }, [setContacts])
+const Page = () => {
 
     return (
 
-    <div>
-        <h1>CONTACTS</h1>
-        {
-            contacts.map( (contact, index) => {
-
-                return (<div key={index}>{contact.name}</div>)
-
-            })
-        }
-
-    </div>
+        <div>
+            <h1>CONTACTS</h1>
+            <ContactList view={'list'}></ContactList>
+            <ContactList view={'card'}></ContactList>
+        </div>
     
     )
 
 
 }
 
-export default Contacts
+export default Page

@@ -8,6 +8,8 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1><Link href="/contact">Contact</Link></h1>
+
+      
     </main>
   )
 }
