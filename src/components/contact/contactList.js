@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 
+
 const ContactItem1 = ({contact}) => {
 
     return (
@@ -26,7 +27,10 @@ const ContactItem2 = ({contact}) => {
 
 const ContactList = ({view}) => {
 
+
+
     const [contacts, setContacts] = useState([])
+    const [listViewMode, setListViewMode] = useState(view)
 
     useEffect( () => {
 
@@ -36,15 +40,29 @@ const ContactList = ({view}) => {
         } )
 
     }, [setContacts])
+
+    const switchView = () => {
+
+        if(listViewMode === 'list') {
+
+            setListViewMode('card')
+
+        } 
+        else
+        {
+            setListViewMode('list')
+        }
+
+    }
     
     return (
         <div>
-            <h1>VIEW: {view}</h1>
+            <h1 onClick={ () => switchView()}>VIEW: {listViewMode}</h1>
             {
 
                 contacts.map( (contact, index) => {
 
-                    return view === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
+                    return listViewMode === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
 
                 })
             

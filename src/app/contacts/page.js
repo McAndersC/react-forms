@@ -1,6 +1,6 @@
 'use client'
 
-import ContactList from "@/components/contactList"
+import ContactList from "@/components/contact/contactList"
 
 const Page = () => {
 

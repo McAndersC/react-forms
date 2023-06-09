@@ -17,17 +17,17 @@ const ContactForm = () => {
             <fieldset>
                 <legend>Create Contact</legend>
 
-            <label>Name
-                <input {...register('name')} />
-            </label>
+                <label>Name
+                    <input {...register('name')} />
+                </label>
 
-            <label>Email
-                <input {...register('email')} />
-            </label>
+                <label>Email
+                    <input {...register('email')} />
+                </label>
 
-            <label>Message!
-                <input {...register('message')} />
-            </label>
+                <label>Message!
+                    <input {...register('message')} />
+                </label>
 
             </fieldset>
 
@@ -35,6 +35,7 @@ const ContactForm = () => {
 
       </form>
     )
+
 
 
 }
