@@ -1,5 +1,5 @@
 "use client";
-import { useForm, useEffect } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "./page.module.css";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -52,10 +52,11 @@ const Contact = () => {
       age
     };
 
-    console.log("contactObject", contactObject);
-
     fetch('/api/contact', {
       method: 'POST',
+      headers: {  
+        'Content-Type': 'application/json'
+      },
       body : JSON.stringify(contactObject)
     })
 

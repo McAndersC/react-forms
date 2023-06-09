@@ -27,16 +27,14 @@ const ContactItem2 = ({contact}) => {
 
 const ContactList = ({view}) => {
 
-
-
     const [contacts, setContacts] = useState([])
     const [listViewMode, setListViewMode] = useState(view)
 
     useEffect( () => {
 
-        fetch('/api/contact').then(response => response.json()).then( (contacts) => {
+        fetch('/api/contact').then(response => response.json()).then( (result) => {
            
-            setContacts(contacts)
+            setContacts(result)
         } )
 
     }, [setContacts])
@@ -57,12 +55,17 @@ const ContactList = ({view}) => {
     
     return (
         <div>
-            <h1 onClick={ () => switchView()}>VIEW: {listViewMode}</h1>
+            <h1 onClick={ () => switchView()}>TEST  {listViewMode}</h1>
             {
 
                 contacts.map( (contact, index) => {
 
-                    return listViewMode === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
+                    
+                    return (
+                        listViewMode === 'list' ? <ContactItem1 key={index} contact={contact} /> : <ContactItem2 key={index} contact={contact} />
+                    )
+                    
+                    // return listViewMode === 'list' ? <ContactItem1 contact={contact} key={index} /> : <ContactItem2 contact={contact} key={index} />
 
                 })
             
